@@ -1,23 +1,16 @@
-// Last updated: 8/22/2026, 9:40:17 AM
+// Last updated: 8/22/2026, 9:40:51 AM
 1class Solution {
-2    public boolean isUgly(int n) {
-3
-4        if (n <= 0) {
-5            return false;
-6        }
-7
-8        while (n % 2 == 0) {
-9            n /= 2;
-10        }
-11
-12        while (n % 3 == 0) {
-13            n /= 3;
-14        }
+2    public int missingNumber(int[] nums) {
+3        int n = nums.length;
+4        int[] v = new int[n+1];
+5        Arrays.fill(v, -1);
+6        for(int i = 0; i < nums.length; i++) {
+7            v[nums[i]] = nums[i];
+8        }
+9        for(int i = 0; i < v.length; i++) {
+10            if(v[i] == -1) return i;
+11        }
+12        return 0;
+13    }
+14}
 15
-16        while (n % 5 == 0) {
-17            n /= 5;
-18        }
-19
-20        return n == 1;
-21    }
-22}
