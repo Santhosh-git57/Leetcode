@@ -1,23 +1,29 @@
-// Last updated: 8/27/2026, 9:11:10 AM
+// Last updated: 8/27/2026, 9:12:08 AM
 1class Solution {
-2    public String addStrings(String num1, String num2) {
-3        StringBuilder sb=new StringBuilder();
-4        int i=num1.length()-1;
-5        int j=num2.length()-1;
-6        int carry=0;
-7        while(i>=0||j>=0||carry!=0){
-8            int sum=carry;
-9            if(i>=0){
-10                sum+=num1.charAt(i)-'0';
-11                i--;
+2    public int thirdMax(int[] nums) {
+3        long max = Long.MIN_VALUE;
+4        long secondMax = Long.MIN_VALUE;
+5        long thirdMax = Long.MIN_VALUE;
+6
+7        for (int num : nums) {
+8            long val = num;
+9
+10            if (val == max || val == secondMax || val == thirdMax) {
+11                continue;
 12            }
-13            if(j>=0){
-14                sum+=num2.charAt(j)-'0';
-15                j--;
-16            }
-17            sb.append(sum%10);
-18            carry=sum/10;
-19        }
-20       return sb.reverse().toString();
-21    } 
-22}
+13
+14            if (val > max) {
+15                thirdMax = secondMax;
+16                secondMax = max;
+17                max = val;
+18            } else if (val > secondMax) {
+19                thirdMax = secondMax;
+20                secondMax = val;
+21            } else if (val > thirdMax) {
+22                thirdMax = val;
+23            }
+24        }
+25
+26        return thirdMax == Long.MIN_VALUE ? (int) max : (int) thirdMax;
+27    }
+28}
