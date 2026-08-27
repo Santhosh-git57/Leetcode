@@ -1,29 +1,31 @@
-// Last updated: 8/27/2026, 9:08:59 AM
-1public class Solution {
-2    public int longestPalindrome(String s) {
-3        // Initialize a set to keep track of characters with odd frequencies
-4        HashSet<Character> charSet = new HashSet<>();
-5        // Initialize the length of the longest palindrome
-6        int length = 0;
-7        
-8        // Iterate over each character in the string
-9        for (char c : s.toCharArray()) {
-10            // If the character is already in the set, remove it and increase the length by 2
-11            if (charSet.contains(c)) {
-12                charSet.remove(c);
-13                length += 2;
-14            } else {
-15                // If the character is not in the set, add it to the set
-16                charSet.add(c);
-17            }
-18        }
-19        
-20        // If there are any characters left in the set, add 1 to the length for the middle character
-21        if (!charSet.isEmpty()) {
-22            length += 1;
-23        }
-24        
-25        // Return the total length of the longest palindrome
-26        return length;
-27    }
-28}
+// Last updated: 8/27/2026, 9:09:31 AM
+1class Solution {
+2    public String toHex(int num) {
+3        if (num == 0)
+4            return "0";
+5        StringBuilder sb = new StringBuilder();
+6        while (num != 0) {
+7            int digit = num & 15;
+8            sb.append(calculate(digit));
+9            num = num >>> 4;
+10        }
+11        return sb.reverse().toString();
+12    }
+13
+14    char calculate(int digit) {
+15        if (digit == 10)
+16            return 'a';
+17        else if (digit == 11)
+18            return 'b';
+19        else if (digit == 12)
+20            return 'c';
+21        else if (digit == 13)
+22            return 'd';
+23        else if (digit == 14)
+24            return 'e';
+25        else if (digit == 15)
+26            return 'f';
+27        else
+28            return (char) ('0' + digit);
+29    }
+30}
